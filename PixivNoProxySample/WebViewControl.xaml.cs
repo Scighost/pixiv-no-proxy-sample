@@ -216,6 +216,10 @@ public sealed partial class WebViewControl : UserControl, INotifyPropertyChanged
                             sb.AppendLine(cookies.Key + ": " + item);
                         }
                     }
+                    if (uri.Host.Contains("i.pximg.net"))
+                    {
+                        sb.AppendLine("Access-Control-Allow-Origin: *");
+                    }
                     args.Response = sender.Environment.CreateWebResourceResponse(ms.AsRandomAccessStream(), (int)response.StatusCode, response.ReasonPhrase, sb.ToString());
                 }
                 finally
