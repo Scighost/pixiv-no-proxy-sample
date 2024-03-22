@@ -72,9 +72,14 @@ public sealed partial class WebViewControl : UserControl, INotifyPropertyChanged
             {
                 return;
             }
+            var path = Path.Combine(AppContext.BaseDirectory, "powerfulpixivdownloader");
             var registration = new CoreWebView2CustomSchemeRegistration("pixiv");
             registration.AllowedOrigins.Add("*");
-            var options = new CoreWebView2EnvironmentOptions { CustomSchemeRegistrations = [registration], };
+            var options = new CoreWebView2EnvironmentOptions
+            {
+                AdditionalBrowserArguments = $"--embedded-browser-webview-enable-extension --load-extension=\"{path}\" ",
+                CustomSchemeRegistrations = [registration],
+            };
             await webview.EnsureCoreWebView2Async(await CoreWebView2Environment.CreateWithOptionsAsync(null, null, options));
             coreWebView2 = webview.CoreWebView2;
             coreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
