@@ -155,6 +155,13 @@ public sealed partial class MainWindow : Window
                             sb.AppendLine(cookies.Key + ": " + item);
                         }
                     }
+                    foreach (var cookies in response.Content.Headers)
+                    {
+                        foreach (var item in cookies.Value)
+                        {
+                            sb.AppendLine(cookies.Key + ": " + item);
+                        }
+                    }
                     args.Response = sender.Environment.CreateWebResourceResponse(ms.AsRandomAccessStream(), (int)response.StatusCode, response.ReasonPhrase, sb.ToString());
                 }
                 catch (Exception ex)
