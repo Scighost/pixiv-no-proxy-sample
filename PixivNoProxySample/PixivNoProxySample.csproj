@@ -26,5 +26,5 @@
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
-
+	
 </Project>
